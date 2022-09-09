@@ -1,18 +1,18 @@
 $(document).ready(function () {
    $("#num_order").change(function (e) {
       var num_order = $('#num_order').val();
+      var price = $('#price').text();
       var data = {
-         num_order: num_order
+         num_order: num_order, price: price
       };
-      console.log(data);
       e.preventDefault();
       $.ajax({
          type: "POST",
          url: "process.php",
          data: data,
-         dataType: "text",
+         dataType: "json",
          success: function (data) {
-            alert(data);
+            $('#total').html('<b>'+data.total+'</b>');
          }
       });
    });
